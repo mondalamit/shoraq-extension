@@ -1,2 +1,5 @@
 # shoraq-extension
-Chrome extension for ShoRaq
+
+The chrome extension for ShoRaq.
+
+

@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+  "name": "ShoRaq",
+  "description": "Chrome extension for ShoRaq.",
+  "version": "1.0",
+  "author": "Amit Mondal",
+  "browser_action": {
+    "default_title": "ShoRaq",
+    "default_icon": "logo.png"
+  }
+}
