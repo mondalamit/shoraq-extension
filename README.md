@@ -2,4 +2,3 @@
 
 The chrome extension for ShoRaq.
 
-
