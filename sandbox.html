@@ -4,31 +4,48 @@
     <script src="handlebars-1.0.0.beta.6.js"></script>
   </head>
   <body>
-    <script id="hello-world-template" type="text/x-handlebars-template">
+    <script id="base-template" type="text/x-handlebars-template">
       <div class="entry" style="
   z-index: 2000000000;
+  margin-top: -10px;
   position: fixed;
   background: #FFFFFF;
-  border: 1px solid black;
   left: 80%;
   width: 20%;
-  height: 100%;
-  padding: 10px;">
-  <div id="tabContainer">
-    <div class="tab"></div>
+  height: 120%;">
+  <div id="header" style="
+  z-index: 2000000001;
+  background: DodgerBlue;
+  left: 76%;
+  width: 24%;
+  height: 8%;
+  position: fixed;
+  text-align: center;">
+  <span style="line-height: 6em;"></span>
+  <span style="display: inline-block; vertical-align:middle; color: #FFFFFF"><h3>ShoRaq</h3></span>
   </div>
-        <h1>test {{thing}}!</h1>
+  <div id="tabContainer" style="
+  z-index: 2000000000;
+  margin-top: -10px;
+  position:fixed;
+  background: DarkBlue;
+  left: 76%;
+  width: 4%
+;  height: 120%;">
+    <div class="tab">ASDF</div>
+  </div>
+        <h1>hello, {{thing}}</h1>
       </div>
     </script>
     <script>
       var templates = [];
-      var source = document.getElementById('hello-world-template').innerHTML;
-      templates['hello'] = Handlebars.compile(source);
+      var source = document.getElementById('base-template').innerHTML;
+      templates['base'] = Handlebars.compile(source);
 
       // Set up message event handler : Messages are sent from sandbox.html -> eventpage.js
       window.addEventListener('message', function(event) {
         var command = event.data.command;
-        var name = event.data.name || 'hello';
+        var name = event.data.name || 'base';
         switch(command) {
           case 'render':
             event.source.postMessage({

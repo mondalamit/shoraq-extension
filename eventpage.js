@@ -6,7 +6,7 @@ chrome.browserAction.onClicked.addListener(function() {
   var iframe = document.getElementById('theFrame');
   var message = {
     command: 'render',
-    context: {thing: 'World'}
+    context: {thing: 'ShoRaq'}
   };
   iframe.contentWindow.postMessage(message, '*');
 });
