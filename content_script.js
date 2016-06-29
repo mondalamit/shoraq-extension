@@ -3,10 +3,15 @@
 // Whenever a message is handled, the rendered HTML (msg.html)
 // is appended to the DOM. 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-	var newdiv = document.createElement('div');
-	newdiv.setAttribute("id", "shoraq-sidebar");
-	newdiv.innerHTML = msg.html;
-	var parentElement = document.body;
-	var firstChild = document.body.firstChild;
-	parentElement.insertBefore(newdiv, firstChild);
+	var sidebar = document.querySelector("#shoraq-sidebar");
+	if (sidebar !== null) {
+		sidebar.remove();
+	} else {
+		var newdiv = document.createElement('div');
+		newdiv.setAttribute("id", "shoraq-sidebar");
+		newdiv.innerHTML = msg.html;
+		var parentElement = document.body;
+		var firstChild = document.body.firstChild;
+		parentElement.insertBefore(newdiv, firstChild);
+	}
 });
