@@ -5,8 +5,18 @@
   </head>
   <body>
     <script id="hello-world-template" type="text/x-handlebars-template">
-      <div class="entry" style="z-index: 99999;">
-        <h1>Hello, {{thing}}!</h1>
+      <div class="entry" style="
+  z-index: 2000000000;
+  position: fixed;
+  background: #FFFFFF;
+  left: 80%;
+  width: 20%;
+  height: 100%;
+  padding: 10px;">
+  <div id="tabContainer">
+    <div class="tab"></div>
+  </div>
+        <h1>test {{thing}}!</h1>
       </div>
     </script>
     <script>

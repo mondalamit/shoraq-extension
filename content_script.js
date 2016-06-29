@@ -4,6 +4,7 @@
 // is appended to the DOM. 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 	var newdiv = document.createElement('div');
+	newdiv.setAttribute("id", "shoraq-sidebar");
 	newdiv.innerHTML = msg.html;
 	var parentElement = document.body;
 	var firstChild = document.body.firstChild;
