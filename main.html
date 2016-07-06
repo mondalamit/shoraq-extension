@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Shoraq</title>
+    <script src="eventpage.js"></script>
+    <script src="handlebars-1.0.0.beta.6.js"></script> 
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <!-- <script>
+      var templates = [];
+      var source = document.getElementById('product-template').innerHTML;
+      templates['product'] = Handlebars.compile(source);
+
+      // Set up message event handler : Messages are sent from sandbox.html -> eventpage.js
+      window.addEventListener('message', function(event) {
+        var command = event.data.command;
+        var name = event.data.name || 'product';
+        switch(command) {
+          case 'render':
+            event.source.postMessage({
+              name: name,
+              html: templates[name](event.data.context)
+            }, event.origin);
+            break;
+
+          // You could imagine additional functionality. For instance:
+          //
+          // case 'new':
+          //   templates[event.data.name] = Handlebars.compile(event.data.source);
+          //   event.source.postMessage({name: name, success: true}, event.origin);
+          //   break;
+        }
+      });
+    </script> -->
+  </head>
+  <body>
+    <script id="product-template" type="text/x-handlebars-template">
+        <div class="product-template">
+            <img class="product-img" src=logo.png height="75" width="75">
+            <div class="product-info-container">
+                <div class="product-name">{{product}}</div>
+                <div class="product-from">from This</div>
+                <div class="product-price">$500</div>
+                <div class="tag-container">
+                </div>
+            </div>
+        </div>
+    </script>
+    <div class="top-bar">
+    	<div class="title-container">
+	    	<img class="title-logo" src=logo.png height="42" width="42">
+	    	<h1 class="title-text">Shoraq</h1>
+    	</div>
+    </div>
+    <div class="sidebar">
+		<button>Home</button>
+    	<button id="products-btn">Products</button>
+    	<button>Cart</button>
+    	<button>Account</button>
+    	<button>FAQ</button>
+    </div>
+    <!-- container where our templates are put into -->
+    <div id="main" class="main-container">
+      <div class="product-template">
+            <img class="product-img" src=logo.png height="75" width="75">
+            <div class="product-info-container">
+                <div class="product-name">{{product}}</div>
+                <div class="product-from">from This</div>
+                <div class="product-price">$500</div>
+                <div class="tag-container">
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

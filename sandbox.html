@@ -2,40 +2,58 @@
 <html>
   <head>
     <script src="handlebars-1.0.0.beta.6.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
   </head>
   <body>
     <script id="base-template" type="text/x-handlebars-template">
-      <div class="entry" style="
-  z-index: 2000000000;
-  margin-top: -10px;
-  position: fixed;
-  background: #FFFFFF;
-  left: 80%;
-  width: 20%;
-  height: 120%;">
-  <div id="header" style="
-  z-index: 2000000001;
-  background: DodgerBlue;
-  left: 76%;
-  width: 24%;
-  height: 8%;
-  position: fixed;
-  text-align: center;">
-  <span style="line-height: 6em;"></span>
-  <span style="display: inline-block; vertical-align:middle; color: #FFFFFF"><h3>ShoRaq</h3></span>
-  </div>
-  <div id="tabContainer" style="
-  z-index: 2000000000;
-  margin-top: -10px;
-  position:fixed;
-  background: DarkBlue;
-  left: 76%;
-  width: 4%
-;  height: 120%;">
-    <div class="tab">ASDF</div>
-  </div>
-        <h1>hello, {{thing}}</h1>
+      <div class="entry" >
+      <div id="shoraq-header">
+        <div class="title-container">
+          <img class="title-logo" src="icons/logo.png" height="42" width="42">
+          <h1 class="title-text">SHORAQ</h1>
+        </div>
       </div>
+      <div id="tabContainer" style="
+            z-index: 2000000000;
+            margin-top: -10px;
+            position:fixed;
+            background: #113855;
+            left: 77%;
+            width: 4%
+          ;  height: 120%;">
+          <div class="button-container">
+            <button>
+              <img src="icons/home.png" height="22" width="22"> 
+              Home
+            </button>
+            <button id="products-btn">
+              <img src="icons/products.png" height="22" width="22">
+              Products
+            </button>
+            <button>
+              <img src="icons/cart.png" height="22" width="22">
+              Cart
+            </button>
+            <button>
+              <img src="icons/account.png" height="22" width="22">
+              Account
+            </button>
+            <button>
+              <img src="icons/FAQ.png" height="22" width="22">
+              FAQ
+            </button>
+          </div>
+        </div>
+        <div class="product-container">
+          <div class="product-img">
+            <img src="" height=110 width=100%>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Shirt</div>
+          </div>
+        </div>
+      </div>
+
     </script>
     <script>
       var templates = [];

@@ -1,0 +1,149 @@
+.entry{
+	z-index: 2000000000;
+    position: fixed;
+    background: #FFFFFF;
+    left: 80%;
+    width: 380px;
+    height: 120%;
+}
+
+#shoraq-header{
+	z-index: 2000000001;
+    background: #2c88c9;
+    left: 77%;
+    width: 26%;
+    height: 60px;
+    position: fixed;
+    text-align: center;
+}
+/*
+.shoraq-title{
+	display: inline-block; 
+	vertical-align:middle; 
+	color: #FFFFFF;
+}
+
+#tab-container{
+	z-index: 2000000000;
+	margin-top: -10px;
+	position:fixed;
+	background: DarkBlue;
+ 	left: 76%;
+	width: 4%;
+	height: 120%;
+}*/
+
+.top-bar{
+	background: #02D0ED;
+}
+
+.title-container{
+	position: absolute;
+}
+.title-logo{
+	margin-left: 10px;
+	margin-right: 5px;
+	margin-top: 10px;
+}
+
+.title-text{
+	color: white;
+	display: inline;
+	position: relative;
+    top: -10px;
+    font-size: 26px;
+}
+
+.sidebar{
+	background: #1A3960;
+	width: 75px;
+	float: left;
+}
+
+.button-container{
+	margin-top: 70px;
+}
+
+button{
+	background: transparent;
+    width: 100%;
+    height: 72px;
+    display: block;
+    border:none;
+}
+
+button:hover{
+	background: #0f314a;
+}
+
+.product-container{
+	position: relative;
+	top: 75px;
+	left: 20px;
+}
+
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #0147A1;
+}
+
+.product-template{
+	margin-left: 84px;
+    margin-top: 10px;
+}
+
+.product-img{
+	width: 90%;
+	margin: 0 auto; 
+}
+
+.product-info{
+	margin: 0 auto;
+    width: 90%;
+    padding-top: 10px;
+}
+
+.product-name{
+	font-size: 15px;
+}
+
+.product-from{
+	font-size: 13px;
+	font-style: italic;
+	margin-bottom: 3px;
+}
+
+.product-price{
+	font-size: 17px;
+	color: green;
+}
+
+
+/*  margin-top: -10px;
+  position: fixed;
+  background: #FFFFFF;
+  left: 80%;
+  width: 20%;
+  height: 120%;">
+  <div id="header" style="
+  z-index: 2000000001;
+  background: DodgerBlue;
+  left: 76%;
+  width: 24%;
+  height: 8%;
+  position: fixed;
+  text-align: center;">
+  <span style="line-height: 6em;"></span>
+  <span style="display: inline-block; vertical-align:middle; color: #FFFFFF"><h3>ShoRaq</h3></span>
+  </div>
+  <div id="tabContainer" style="
+  z-index: 2000000000;
+  margin-top: -10px;
+  position:fixed;
+  background: DarkBlue;
+  left: 76%;
+  width: 4%
+;  height: 120%;">*/

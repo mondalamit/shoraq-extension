@@ -11,6 +11,11 @@ chrome.browserAction.onClicked.addListener(function() {
   iframe.contentWindow.postMessage(message, '*');
 });
 
+function init() {
+  gapi.client.setApiKey('AIzaSyBhp6sBpEhRHUTY_SDj3E29q5RTdiWSFwo');
+  console.log("HEY");
+}
+
 // Event handler for the event from sandbox.html
 // Sandbox -> eventpage.js -> content_script.js
 // Sends a message to the content_script.js with the rendered HTML.
