@@ -31,5 +31,8 @@ window.setInterval(function() {
     if (!video.paused) {
       console.log(new Date(video.currentTime * 1000).toISOString().substr(11, 8));
     }
+  } else {
+    // Something went wrong when getting the video element. Try again.
+    video = document.getElementsByTagName('video')[0];
   }
 }, 1000);
