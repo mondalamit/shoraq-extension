@@ -3,14 +3,14 @@ var currTemplate = "";
 // Register the event for clicking the browser action.
 // Sends a message to the iframe sandbox.html, referenced from within eventpage.html
 chrome.browserAction.onClicked.addListener(function() {
+  var path = chrome.extension.getURL('/icons');
   var iframe = document.getElementById('theFrame');
   var message = {
     command: 'render',
-    context: {thing: 'ShoRaq'}
+    context: {thing: 'ShoRaq', img_path: path}
   };
   iframe.contentWindow.postMessage(message, '*');
 });
-
 function init() {
   gapi.client.setApiKey('AIzaSyBhp6sBpEhRHUTY_SDj3E29q5RTdiWSFwo');
   console.log("HEY");

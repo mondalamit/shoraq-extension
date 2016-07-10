@@ -32,24 +32,22 @@ var url = document.URL;
 // believe in the regex O.o
 var regex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
 var match = url.match(regex);
-var yt_id = match[1]; // get the resulting token
-console.log(yt_id);
+
+var yt_id = match[1]; // Youtube video ID
+var time = null; // Current time of Youtube video; updating every 1 second.
 
 // Get current time.
 var video = document.getElementsByTagName('video')[0];
 window.setInterval(function() {
   if (video) {
     if (!video.paused) {
-      console.log(new Date(video.currentTime * 1000).toISOString().substr(11, 8));
+      time = new Date(video.currentTime * 1000).toISOString().substr(11, 8);
     }
   } else {
     // Something went wrong when getting the video element. Try again.
     video = document.getElementsByTagName('video')[0];
   }
 }, 1000);
-
-
-
 
 
 
