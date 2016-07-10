@@ -11,14 +11,13 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 		link.href = chrome.extension.getURL("main.css");
 		link.type = "text/css";
 		link.rel = "stylesheet";
-		document.getElementsByTagName("head")[0].appendChild(link);
+		document.head.appendChild(link);
 		
-		var newdiv = document.createElement('div');
-		newdiv.setAttribute("id", "shoraq-sidebar");
-		newdiv.innerHTML = msg.html;
-		var parentElement = document.body;
+		var sidebarContainer = document.createElement('div');
+		sidebarContainer.setAttribute("id", "shoraq-sidebar");
+		sidebarContainer.innerHTML = msg.html;
 		var firstChild = document.body.firstChild;
-		parentElement.insertBefore(newdiv, firstChild);
+		document.body.insertBefore(sidebarContainer, firstChild);
 	}
 });
 
@@ -33,8 +32,10 @@ var url = document.URL;
 var regex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
 var match = url.match(regex);
 
+// Important! //
 var yt_id = match[1]; // Youtube video ID
 var time = null; // Current time of Youtube video; updating every 1 second.
+// Important! //
 
 // Get current time.
 var video = document.getElementsByTagName('video')[0];

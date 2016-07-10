@@ -3,11 +3,11 @@ var currTemplate = "";
 // Register the event for clicking the browser action.
 // Sends a message to the iframe sandbox.html, referenced from within eventpage.html
 chrome.browserAction.onClicked.addListener(function() {
-  var path = chrome.extension.getURL('/icons');
+  var path = chrome.extension.getURL('/');
   var iframe = document.getElementById('theFrame');
   var message = {
     command: 'render',
-    context: {thing: 'ShoRaq', img_path: path}
+    context: {thing: 'ShoRaq', path: path}
   };
   iframe.contentWindow.postMessage(message, '*');
 });
