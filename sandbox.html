@@ -22,7 +22,7 @@
             width: 4%
           ;  height: 120%;">
           <div class="button-container">
-            <button>
+            <button id="home-btn">
               <img src="icons/home.png" height="22" width="22"> 
               Home
             </button>
@@ -44,7 +44,14 @@
             </button>
           </div>
         </div>
-        <div class="product-container">
+        <div id="mainContainer" src="templates.html"> <!--this is where we'll throw our templates !-->
+        </div>
+        
+      </div>
+
+    </script>
+    <script id="product-template" type="text/x-handlebars-template">
+      <div class="product-container">
           <div class="product-img">
             <img src="" height=110 width=100%>
           </div>
@@ -54,13 +61,19 @@
             <div class="product-rating"></div>
           </div>
         </div>
-      </div>
-
     </script>
     <script>
       var templates = [];
       var source = document.getElementById('base-template').innerHTML;
       templates['base'] = Handlebars.compile(source);
+      
+      var product = document.getElementById('product-template').innerHTML;
+      var productTemplate = Handlebars.compile(product);
+
+      /*var homeButton = document.getElementById("home-btn");
+      homeButton.addEventListener("click", function(){
+        console.log("sup fag");
+      });*/
 
       // Set up message event handler : Messages are sent from sandbox.html -> eventpage.js
       window.addEventListener('message', function(event) {

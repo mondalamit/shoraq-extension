@@ -20,12 +20,14 @@ function init() {
 // Sandbox -> eventpage.js -> content_script.js
 // Sends a message to the content_script.js with the rendered HTML.
 window.addEventListener('message', function(event) {
-  if (event.data.html) {
-    currTemplate = event.data.html;
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      var activeTab = tabs[0];
-      chrome.tabs.sendMessage(activeTab.id, {"html": currTemplate});
-    });
+  if (event.data.name == 'base'){
+    if (event.data.html) {
+      currTemplate = event.data.html;
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, {"html": currTemplate});
+      });
+    }
   }
 });
 
