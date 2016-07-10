@@ -2,14 +2,13 @@
 <html>
   <head>
     <script src="handlebars-1.0.0.beta.6.js"></script>
-    <link rel="stylesheet" type="text/css" href="main.css">
   </head>
   <body>
     <script id="base-template" type="text/x-handlebars-template">
       <div class="entry" >
       <div id="shoraq-header">
         <div class="title-container">
-          <img class="title-logo" src="icons/logo.png" height="42" width="42">
+          <img class="title-logo" src="{{path}}icons/logo.png" height="42" width="42">
           <h1 class="title-text">SHORAQ</h1>
         </div>
       </div>
@@ -22,24 +21,24 @@
             width: 4%
           ;  height: 120%;">
           <div class="button-container">
-            <button id="home-btn">
-              <img src="icons/home.png" height="22" width="22"> 
+            <button>
+              <img src="{{path}}icons/home.png" height="22" width="22"> 
               Home
             </button>
             <button id="products-btn">
-              <img src="icons/products.png" height="22" width="22">
+              <img src="{{path}}icons/products.png" height="22" width="22">
               Products
             </button>
             <button>
-              <img src="icons/cart.png" height="22" width="22">
+              <img src="{{path}}icons/cart.png" height="22" width="22">
               Cart
             </button>
             <button>
-              <img src="icons/account.png" height="22" width="22">
+              <img src="{{path}}icons/account.png" height="22" width="22">
               Account
             </button>
             <button>
-              <img src="icons/FAQ.png" height="22" width="22">
+              <img src="{{path}}icons/FAQ.png" height="22" width="22">
               FAQ
             </button>
           </div>

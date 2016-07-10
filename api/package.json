@@ -1,0 +1,30 @@
+{
+  "name": "shoraq-api",
+  "version": "1.0.0",
+  "description": "express/rethinkdb API server for ShoRaq",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mondalamit/shoraq-extension.git"
+  },
+  "author": "Amit Mondal",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/mondalamit/shoraq-extension/issues"
+  },
+  "homepage": "https://github.com/mondalamit/shoraq-extension#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "helmet": "^2.1.1",
+    "morgan": "^1.7.0",
+    "rethinkdb": "^2.3.2"
+  }
+}

@@ -26,5 +26,5 @@
   "sandbox": {
     "pages": ["sandbox.html"]
   },
-  "web_accessible_resources": ["icons/logo.png", "icons/home.png", "main.css"]
+  "web_accessible_resources": ["icons/*.png", "main.css"]
 }
