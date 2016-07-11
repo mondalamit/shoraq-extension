@@ -26,5 +26,5 @@
   "sandbox": {
     "pages": ["sandbox.html"]
   },
-  "web_accessible_resources": ["icons/*.png", "main.css"]
+  "web_accessible_resources": ["icons/*.png", "main.css", "handlebars-1.0.0.beta.6.js", "handlebars-latest.js"]
 }

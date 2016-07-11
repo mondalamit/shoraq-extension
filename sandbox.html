@@ -12,24 +12,17 @@
           <h1 class="title-text">SHORAQ</h1>
         </div>
       </div>
-      <div id="tabContainer" style="
-            z-index: 2000000000;
-            margin-top: -10px;
-            position:fixed;
-            background: #113855;
-            left: 77%;
-            width: 4%
-          ;  height: 120%;">
+      <div id="tabContainer" class="tab-container">
           <div class="button-container">
-            <button>
-              <img src="{{path}}icons/home.png" height="22" width="22"> 
+            <button id="homeBtn">
+              <img src="{{path}}icons/home.png"  height="22" width="22"> 
               Home
             </button>
-            <button id="products-btn">
+            <button id="productsBtn">
               <img src="{{path}}icons/products.png" height="22" width="22">
               Products
             </button>
-            <button>
+            <button id="cartBtn">
               <img src="{{path}}icons/cart.png" height="22" width="22">
               Cart
             </button>
@@ -49,8 +42,9 @@
       </div>
 
     </script>
-    <script id="product-template" type="text/x-handlebars-template">
-      <div class="product-container">
+
+    <script id="home-template" type="text/x-handlebars-template">
+      <div class="inner-main-container">
           <div class="product-img">
             <img src="" height=110 width=100%>
           </div>
@@ -61,18 +55,45 @@
           </div>
         </div>
     </script>
+
+    <script id="products-template" type="text/x-handlebars-template">
+      <div class="inner-main-container">
+        <div class="product-img-prod">
+          <img src="" height=110 width=30%>
+        </div>
+        <div class="product-info-prod">
+          <div class="prod-name">JLaw's Glasses</div>
+          <div class="prod-from">from Joy</div>
+          <div class="price">$500</div>
+          <div class="rating"></div>
+          <div class="tag-container">
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script id="cart-template" type="text/x-handlebars-template">
+      <div class="inner-main-container">
+        <div class="cart-title">Cart</div>
+        <button id="checkoutBtn" class="checkout-btn">
+          Proceed to Checkout
+        </button>
+      </div>
+    </script>
+    
     <script>
       var templates = [];
       var source = document.getElementById('base-template').innerHTML;
       templates['base'] = Handlebars.compile(source);
-      
-      var product = document.getElementById('product-template').innerHTML;
-      var productTemplate = Handlebars.compile(product);
 
-      /*var homeButton = document.getElementById("home-btn");
-      homeButton.addEventListener("click", function(){
-        console.log("sup fag");
-      });*/
+      var home = document.getElementById('home-template').innerHTML;
+      templates['home'] = Handlebars.compile(home);
+
+      var products = document.getElementById('products-template').innerHTML;
+      templates['products'] = Handlebars.compile(products);
+
+      var cart = document.getElementById('cart-template').innerHTML;
+      templates['cart'] = Handlebars.compile(cart);
 
       // Set up message event handler : Messages are sent from sandbox.html -> eventpage.js
       window.addEventListener('message', function(event) {
@@ -82,7 +103,10 @@
           case 'render':
             event.source.postMessage({
               name: name,
-              html: templates[name](event.data.context)
+              base: templates[name](event.data.context),
+              home: templates['home'](event.data.context),
+              products: templates['products'](event.data.context),
+              cart: templates['cart'](event.data.context)
             }, event.origin);
             break;
 

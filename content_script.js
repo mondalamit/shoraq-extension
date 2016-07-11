@@ -18,8 +18,29 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 		sidebarContainer.innerHTML = msg.html;
 		var firstChild = document.body.firstChild;
 		document.body.insertBefore(sidebarContainer, firstChild);
+
+      	var mainContainer = document.getElementById('mainContainer');
+      	//load home by default
+      	mainContainer.innerHTML = msg.home;
+
+      	//click listeners for sidebar buttons
+		var homeButton = document.getElementById("homeBtn");
+      	homeButton.addEventListener("click", function(){
+        	mainContainer.innerHTML = msg.home;
+      	});
+
+      	var productsButton = document.getElementById("productsBtn");
+      	productsButton.addEventListener("click", function(){
+      		mainContainer.innerHTML = msg.products;
+      	})
+
+      	var cartButton = document.getElementById("cartBtn");
+      	cartButton.addEventListener("click", function(){
+      		mainContainer.innerHTML = msg.cart;
+      	})
 	}
 });
+
 
 // due to changes in manifest.json (run_at: document_idle), this will load
 // BEFORE "load" event, but after DOM is ready!
@@ -33,7 +54,9 @@ var regex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i
 var match = url.match(regex);
 
 // Important! //
-var yt_id = match[1]; // Youtube video ID
+if (match !== null){
+	var yt_id = match[1]; // Youtube video ID
+}
 var time = null; // Current time of Youtube video; updating every 1 second.
 // Important! //
 

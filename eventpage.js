@@ -20,14 +20,20 @@ function init() {
 // Sandbox -> eventpage.js -> content_script.js
 // Sends a message to the content_script.js with the rendered HTML.
 window.addEventListener('message', function(event) {
-  if (event.data.name == 'base'){
-    if (event.data.html) {
-      currTemplate = event.data.html;
+    if (event.data.base) {
+      currTemplate = event.data.base;
+      homeTemplate = event.data.home;
+      productsTemplate = event.data.products;
+      cartTemplate = event.data.cart;
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         var activeTab = tabs[0];
-        chrome.tabs.sendMessage(activeTab.id, {"html": currTemplate});
+        chrome.tabs.sendMessage(activeTab.id, {
+          "html": currTemplate,
+          "home": homeTemplate,
+          "products": productsTemplate,
+          "cart": cartTemplate
+        });
       });
     }
-  }
 });
 

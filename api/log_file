@@ -1,0 +1,17 @@
+2016-07-10T14:18:55.404170500 0.017406s notice: In recursion: removing file 'c:\\Users\\Zach\\Documents\\shoraq-extension\\api\\tmp'
+2016-07-10T14:18:55.407151700 0.020396s warn: Trying to delete non-existent file 'c:\\Users\\Zach\\Documents\\shoraq-extension\\api\\tmp'
+2016-07-10T14:18:55.438957000 0.052325s notice: Running rethinkdb 2.3.3-windows (MSC 190023506)...
+2016-07-10T14:18:55.440961300 0.053643s notice: Running on 6.2.9200 (Windows 8, Server 2012)
+2016-07-10T14:18:55.442965000 0.055913s notice: Loading data from directory c:\\Users\\Zach\\Documents\\shoraq-extension\\api
+2016-07-10T14:18:55.448966000 0.061608s error: CreateFile failed: c:\\Users\\Zach\\Documents\\shoraq-extension\\api\\metadata: The system cannot find the file specified.
+2016-07-10T14:18:55.454869000 0.067740s error: Inaccessible database file: "c:\\Users\\Zach\\Documents\\shoraq-extension\\api\\metadata": Input/output error\nSome possible reasons:\n- the database file couldn't be created or opened for reading and writing\n- the user which was used to start the database is not an owner of the file
+2016-07-10T14:20:57.487214200 0.016675s notice: Running rethinkdb 2.3.3-windows (MSC 190023506)...
+2016-07-10T14:20:57.488243800 0.017779s notice: Running on 6.2.9200 (Windows 8, Server 2012)
+2016-07-10T14:20:57.489215600 0.018583s notice: Loading data from directory c:\\Users\\Zach\\Documents\\shoraq-extension\\api
+2016-07-10T14:20:57.493217500 0.022524s error: CreateFile failed: c:\\Users\\Zach\\Documents\\shoraq-extension\\api\\metadata: The system cannot find the file specified.
+2016-07-10T14:20:57.499225100 0.028422s error: Inaccessible database file: "c:\\Users\\Zach\\Documents\\shoraq-extension\\api\\metadata": Input/output error\nSome possible reasons:\n- the database file couldn't be created or opened for reading and writing\n- the user which was used to start the database is not an owner of the file
+2016-07-10T14:26:47.231304000 0.016830s notice: Running rethinkdb 2.3.3-windows (MSC 190023506)...
+2016-07-10T14:26:47.232306200 0.017970s notice: Running on 6.2.9200 (Windows 8, Server 2012)
+2016-07-10T14:26:47.234306600 0.019198s notice: Loading data from directory C:\\Users\\Zach\\Documents\\shoraq-extension\\api
+2016-07-10T14:26:47.238308600 0.024180s error: CreateFile failed: C:\\Users\\Zach\\Documents\\shoraq-extension\\api\\metadata: The system cannot find the file specified.
+2016-07-10T14:26:47.245315900 0.030346s error: Inaccessible database file: "C:\\Users\\Zach\\Documents\\shoraq-extension\\api\\metadata": Input/output error\nSome possible reasons:\n- the database file couldn't be created or opened for reading and writing\n- the user which was used to start the database is not an owner of the file
