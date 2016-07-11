@@ -25,9 +25,17 @@ r.connect({host: 'localhost', port: 28015}, function(err, conn) {
         r.db('shoraq_products').table('products').insert(products).run(connection, function(err, result) {
           if (err) throw err;
           console.log('Build Documents:', result);
-          connection.close(function(err) {
+          r.db('shoraq_products').table('products').indexCreate('videoID').run(connection, function(err) {
             if (err) throw err;
-          });
+            console.log('Creating index...');
+            r.db('shoraq_products').table('products').indexWait('videoID').run(connection, function(err) {
+              if (err) throw err;
+              console.log('Index created on videoID.');
+              connection.close(function(err) {
+                if (err) throw err;
+              });
+            });
+          })
         });
       });
     });
