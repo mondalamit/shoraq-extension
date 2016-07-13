@@ -60,12 +60,17 @@ if (match !== null){
 var time = null; // Current time of Youtube video; updating every 1 second.
 // Important! //
 
+// Set up a connection to eventpage.js
+var port = chrome.runtime.connect({name: "timeurl"});
+
 // Get current time.
 var video = document.getElementsByTagName('video')[0];
 window.setInterval(function() {
   if (video) {
     if (!video.paused) {
       time = new Date(video.currentTime * 1000).toISOString().substr(11, 8);
+      // Send the video ID 
+      port.postMessage({time: time, id: yt_id});
     }
   } else {
     // Something went wrong when getting the video element. Try again.

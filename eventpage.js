@@ -1,36 +1,50 @@
 var currTemplate = "";
-
+var currentTime = null;
+var videoID = null;
 // Register the event for clicking the browser action.
 // Sends a message to the iframe sandbox.html, referenced from within eventpage.html
 chrome.browserAction.onClicked.addListener(function() {
-  var path = chrome.extension.getURL('/');
-  var iframe = document.getElementById('theFrame');
-  var prods = getProducts();
-
-  var message = {
-    command: 'render',
-    context: {thing: 'ShoRaq', path: path},
-    contextProd: {prodCount: prods.length,
-                  products: prods,
-                  path: path}
-  };
-  iframe.contentWindow.postMessage(message, '*');
+  getProducts().then(function(prods) {
+    var path = chrome.extension.getURL('/');
+    var iframe = document.getElementById('theFrame');
+    var message = {
+      command: 'render',
+      context: {thing: 'ShoRaq', path: path},
+      contextProd: {
+        prodCount: prods.length, 
+        products: prods, 
+        path: path
+      }
+    };
+    iframe.contentWindow.postMessage(message, '*');
+    });
 });
 
-//returns a list of products as JSON objects
-function getProducts(){
-  var contextProducts = [
-    {name: 'Jennifer\'s glasses',
-      from: 'Joy',
-      cost: '500'},
+// Listen for the URL and video time from the content script.
+chrome.runtime.onConnect.addListener(function(port) {
+  console.assert(port.name == "timeurl");
+  port.onMessage.addListener(function(msg) {
+    currentTime = msg.time;
+    videoID = msg.id;
+  });
+});
 
-    {name: 'Bradley\'s suit',
-      from: 'Joy',
-      cost: '300'}
-  ];
-  //TODO- code to get the products given a videoID
-  //using test prods for now
-  return contextProducts;
+//returns a Promise for a list of products.
+function getProducts() {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:3000/api/products');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        resolve(JSON.parse(xhr.responseText));
+      }
+    };
+    xhr.send(JSON.stringify({
+      videoID: videoID
+    }));
+    xhr.onerror = reject;
+  });
 }
 
 // Event handler for the event from sandbox.html

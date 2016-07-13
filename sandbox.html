@@ -36,7 +36,7 @@
             </button>
           </div>
         </div>
-        <div id="mainContainer" src="templates.html"> <!--this is where we'll throw our templates !-->
+        <div id="mainContainer" src="templates.html"> <!--this is where well throw our templates !-->
         </div>
         
       </div>
@@ -64,18 +64,21 @@
         {{#each products}}
         <div class="single-product">
           <div class="product-img-prod">
-            <img src="" height=110 width=150>
+            <img src="{{thumb}}" height=110 width=150>
           </div>
           <div class="product-info-prod">
-            <img src="{{path}}icons/neutral_like.png" height=30 width=30 id="likeBtn">
+            <img src="{{path}}/icons/neutral_like.png" height=30 width=30 id="likeBtn">
             <div class="prod-name">{{name}}</div>
             <div class="prod-from">
               <span class="from">from</span>
-              <a class="from-title" href="">{{from}}</a>
+              <a class="from-title" href="{{link}}">{{from}}</a>
             </div>
             <div class="product-cost">${{cost}}</div>
-            <div class="rating"></div>
+            <div class="rating">{{rating}}</div>
             <div class="tag-container">
+            {{#each tags}}
+              <span class="tag">{{this}}</span>
+            {{/each}}
             </div>
           </div>
         </div>

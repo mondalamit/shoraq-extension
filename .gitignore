@@ -2,3 +2,5 @@ node_modules
 rethinkdb_data
 api/rethinkdb.exe
 api/log_file
+
+api/npm-debug.log

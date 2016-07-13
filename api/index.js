@@ -13,30 +13,34 @@ app.use(bodyParser.json()); // enable json body parsing
 app.use(cors()); // enable requests from other domains (CORS)
 app.use(helmet()); // secure our API with helmet
 
-
+// Connect to RethinkDB
 var connection = null;
 r.connect({host: 'localhost', port: 28015}, function(err, conn) {
-    if (err) throw err;
-    connection = conn;
+  if (err) throw err;
+  connection = conn;
 });
 
+// POST : {videoID : 'ID'}
+// Return: [Product]
 app.post('/api/products', function(req, res) {
 	// grab videoID from request body.
 	var videoID = req.body.videoID;
 
-	r.db('shoraq_products').table('products').getAll(videoID, {index: 'videoID'})
-	.run(connection, function(err, cursor) {
-		if (err) throw err;
-		cursor.toArray(function(err, result) {
-			if (err) throw err;
-			res.json(result);
-		});
-	});
+  if (videoID !== null) {
+    r.db('shoraq_products').table('products').getAll(videoID, {index: 'videoID'})
+    .run(connection, function(err, cursor) {
+      if (err) throw err;
+      cursor.toArray(function(err, result) {
+        if (err) throw err;
+        res.json(result);
+      });
+    });
+  }
 });
 
 app.use(function (error, request, response, next) {
-    response.status(error.status || 500);
-    response.json({ error: error.message });
+  response.status(error.status || 500);
+  response.json({ error: error.message });
 });
 
 var server = app.listen(3000);
