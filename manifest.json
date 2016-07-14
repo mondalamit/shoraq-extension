@@ -3,7 +3,7 @@
   "description": "The official Chrome extension for ShoRaq.",
   "version": "1.0",
   "manifest_version": 2,
-  "permissions": ["identity", "notifications", "activeTab", "tabs", "http://*/*", "https://*/*"],
+  "permissions": ["identity", "notifications", "activeTab", "tabs", "https://www.youtube.com/*"],
   "background": {
     "page": "eventpage.html",
     "persistent": false

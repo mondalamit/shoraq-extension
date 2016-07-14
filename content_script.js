@@ -3,80 +3,76 @@
 // Whenever a message is handled, the rendered HTML (msg.html)
 // is appended to the DOM. 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-	var sidebar = document.querySelector("#shoraq-sidebar");
-	if (sidebar !== null) {
-		sidebar.remove();
-	} else {
-		var link = document.createElement("link");
-		link.href = chrome.extension.getURL("main.css");
-		link.type = "text/css";
-		link.rel = "stylesheet";
-		document.head.appendChild(link);
-		
-		var sidebarContainer = document.createElement('div');
-		sidebarContainer.setAttribute("id", "shoraq-sidebar");
-		sidebarContainer.innerHTML = msg.html;
-		var firstChild = document.body.firstChild;
-		document.body.insertBefore(sidebarContainer, firstChild);
+  var sidebar = document.querySelector('#shoraq-sidebar');
+  if (sidebar !== null) {
+    sidebar.remove();
+  } else {
+    var link = document.createElement('link');
+    link.href = chrome.extension.getURL('main.css');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
 
-      	var mainContainer = document.getElementById('mainContainer');
-      	//load home by default
-      	mainContainer.innerHTML = msg.home;
+    var sidebarContainer = document.createElement('div');
+    sidebarContainer.setAttribute('id', 'shoraq-sidebar');
+    sidebarContainer.innerHTML = msg.html;
+    var firstChild = document.body.firstChild;
+    document.body.insertBefore(sidebarContainer, firstChild);
 
-      	//click listeners for sidebar buttons
-		var homeButton = document.getElementById("homeBtn");
-      	homeButton.addEventListener("click", function(){
-        	mainContainer.innerHTML = msg.home;
-      	});
+    var mainContainer = document.getElementById('mainContainer');
+    //load home by default
+    mainContainer.innerHTML = msg.home;
 
-      	var productsButton = document.getElementById("productsBtn");
-      	productsButton.addEventListener("click", function(){
-      		mainContainer.innerHTML = msg.products;
-      	})
+    //click listeners for sidebar buttons
+    var homeButton = document.getElementById('homeBtn');
+    homeButton.addEventListener('click', function() {
+      mainContainer.innerHTML = msg.home;
+    });
 
-      	var cartButton = document.getElementById("cartBtn");
-      	cartButton.addEventListener("click", function(){
-      		mainContainer.innerHTML = msg.cart;
-      	})
-	}
+    var productsButton = document.getElementById('productsBtn');
+    productsButton.addEventListener('click', function() {
+      mainContainer.innerHTML = msg.products;
+    })
+
+    var cartButton = document.getElementById('cartBtn');
+    cartButton.addEventListener('click', function() {
+      mainContainer.innerHTML = msg.cart;
+    })
+  }
 });
 
-
-// due to changes in manifest.json (run_at: document_idle), this will load
-// BEFORE "load" event, but after DOM is ready!
-// this solves the issue of it not being able to find the video element in some cases.
-
-// Get video ID.
-
-var url = document.URL;
-// believe in the regex O.o
-var regex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
-var match = url.match(regex);
-
-// Important! //
-if (match !== null){
-	var yt_id = match[1]; // Youtube video ID
-}
-var time = null; // Current time of Youtube video; updating every 1 second.
-// Important! //
-
 // Set up a connection to eventpage.js
-var port = chrome.runtime.connect({name: "timeurl"});
+var port = chrome.runtime.connect({
+  name: 'time'
+});
 
-// Get current time.
+// Do a URL comparison to determine whether to remove the sidebar on page navigation.
+var oldUrl = document.URL;
+
+// Get current time and the current videoID.
 var video = document.getElementsByTagName('video')[0];
 window.setInterval(function() {
+  // Check if the user has switched pages; remove the sidebar or re-render it with new products.
+  if (document.URL !== oldUrl) {
+    var sidebar = document.querySelector('#shoraq-sidebar');
+    if (sidebar == null) {
+      oldUrl = document.URL;
+    } else {
+      sidebar.remove();
+      oldUrl = document.URL;
+    }
+  }
+  // Check if a video element exists and send a message with the current time if so.
   if (video) {
     if (!video.paused) {
-      time = new Date(video.currentTime * 1000).toISOString().substr(11, 8);
-      // Send the video ID 
-      port.postMessage({time: time, id: yt_id});
+      var time = new Date(video.currentTime * 1000).toISOString().substr(11, 8);
+      // Send the current time.
+      port.postMessage({
+        time: time
+      });
     }
   } else {
     // Something went wrong when getting the video element. Try again.
     video = document.getElementsByTagName('video')[0];
   }
 }, 1000);
-
-
-
